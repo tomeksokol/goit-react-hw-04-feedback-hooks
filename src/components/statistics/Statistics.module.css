@@ -1,0 +1,28 @@
+.container {
+  width: 1000px;
+  height: 600px;
+  background-color: white;
+  color: black;
+  text-align: left;
+  padding: 20px;
+}
+
+.buttons {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.positive {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 20px;
+  background-color: forestgreen;
+}
+
+.negative {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 20px;
+  background-color: red;
+}

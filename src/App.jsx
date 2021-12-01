@@ -1,11 +1,11 @@
 import './App.css';
-import Feedback from './components/feedback/Feedback';
+import Statistics from './components/statistics/Statistics';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Feedback />
+        <Statistics />
         
       </header>
     </div>
