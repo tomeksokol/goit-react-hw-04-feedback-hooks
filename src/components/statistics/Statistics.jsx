@@ -1,13 +1,22 @@
 import React, { Component } from "react";
+import NotificationMessage from "../notification/NotificationMessage";
 import style from "./Statistics.module.css";
+import FeedbackOptions from "../feedbackOptions/FeedbackOptions";
+import SectionTitle from "../sectionTitle/SectionTitle";
+
+const option = {
+  option1: "Good",
+  option2: "Neutral",
+  option3: "Bad",
+};
 
 class Statistics extends Component {
   state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-    total: 0,
-    percentage: 0,
+    good: this.props.good,
+    neutral: this.props.neutral,
+    bad: this.props.bad,
+    total: this.props.total,
+    percentage: this.props.percentage,
   };
 
   addGoodOpinion = (evt) => {
@@ -56,43 +65,39 @@ class Statistics extends Component {
     // const { statValue } = this.props;
     return (
       <div className={style.container}>
-        <h1 className="title">Please leave a feedback</h1>
-        <div>
-          <button
-            type="button"
-            onClick={this.addGoodOpinion}
-            className={style.positive}>
-            Good
-          </button>
-          <button
-            type="button"
-            onClick={this.addNeutralOpinion}
-            className={style.buttons}>
-            Neutral
-          </button>
-          <button
-            type="button"
-            onClick={this.addBadOpinion}
-            className={style.negative}>
-            Bad
-          </button>
-        </div>
-        <h2 className="subtitle">Statistics</h2>
-        <p>
-          Good: <span>{this.state.good}</span>
-        </p>
-        <p>
-          Neutral: <span>{this.state.neutral}</span>
-        </p>
-        <p>
-          Bad: <span>{this.state.bad}</span>
-        </p>
-        <p>
-          Total: <span>{this.state.total}</span>
-        </p>
-        <p>
-          Positive feedback: <span>{Math.round(this.state.percentage)}%</span>
-        </p>
+        <SectionTitle title={"Please leave a feedback"}>
+          <FeedbackOptions
+            {...option}
+            addGoodOpinion={this.addGoodOpinion}
+            addNeutralOpinion={this.addNeutralOpinion}
+            addBadOpinion={this.addBadOpinion}
+          />
+        </SectionTitle>
+
+        <SectionTitle title={"Statistics"}>
+          {this.state.total > 0 ? (
+            <section>
+              <p>
+                Good: <span>{this.state.good}</span>
+              </p>
+              <p>
+                Neutral: <span>{this.state.neutral}</span>
+              </p>
+              <p>
+                Bad: <span>{this.state.bad}</span>
+              </p>
+              <p>
+                Total: <span>{this.state.total}</span>
+              </p>
+              <p>
+                Positive feedback:{" "}
+                <span>{Math.round(this.state.percentage)}%</span>
+              </p>
+            </section>
+          ) : (
+            <NotificationMessage message={"No feedback given"} />
+          )}
+        </SectionTitle>
       </div>
     );
   }
